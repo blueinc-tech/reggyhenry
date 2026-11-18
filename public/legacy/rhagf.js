@@ -15,6 +15,20 @@
 
 	/* ---------- 1. Elementor widgets ---------- */
 
+	// The theme hands Swiper a jQuery object, which the Swiper 8 that Elementor ships ignores,
+	// leaving the home page slider blank (on the old WordPress site too). Pass the element itself.
+	if (window.Swiper && !window.Swiper.rhagf) {
+		var OrigSwiper = window.Swiper;
+		var PatchedSwiper = function (el, opts) {
+			if (el && el.jquery) el = el[0];
+			return new OrigSwiper(el, opts);
+		};
+		PatchedSwiper.prototype = OrigSwiper.prototype;
+		Object.setPrototypeOf(PatchedSwiper, OrigSwiper);
+		PatchedSwiper.rhagf = true;
+		window.Swiper = PatchedSwiper;
+	}
+
 	var actions = {};
 	window.elementorFrontend = window.elementorFrontend || {
 		hooks: {
