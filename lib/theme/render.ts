@@ -132,7 +132,7 @@ function causeCard(c: Campaign): string {
 </h3>
 <p class="causes-one__text">${esc(c.excerpt)}</p>
 <div class="causes-one__progress">
-<div class="causes-one__progress-shape"></div>
+<div class="causes-one__progress-shape" style="background-image: url(/legacy/theme-images/2022/09/causes-one-progress-shape-1.png)"></div>
 <div class="bar">
 <div class="bar-inner count-bar" data-percent="${fmtPct(p)}">
 <div class="count-text">${fmtPct(p)}</div>

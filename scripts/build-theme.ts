@@ -11,10 +11,14 @@
  * Writes lib/theme/templates.json. The stylesheets, scripts and fonts the pages
  * use live in public/legacy/ under their original wp-content/... paths.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
 const SRC = path.resolve("theme-source/pages");
+const DEMO_IMAGES = path.resolve("public/legacy/theme-images");
+const DEMO_IMAGE = /https?:\/\/layerdrops\.com\/oxpinswp\/wp-content\/uploads\/([\w./-]+?\.(?:jpe?g|png|svg|webp))/g;
+/** A demo-server image address → its restored copy, or unchanged (and later dropped) when there is none. */
+const demoImage = (url: string, rel: string) => (existsSync(path.join(DEMO_IMAGES, rel)) ? `/legacy/theme-images/${rel}` : url);
 const ORIGIN = /https?:\/\/(?:www\.)?rhagfnig\.org\.ng/g;
 const read = (f: string) => readFileSync(path.join(SRC, f), "utf8");
 
@@ -64,7 +68,10 @@ function tidy(html: string): string {
 			.replace(/<noscript\b[\s\S]*?<\/noscript>/g, "")
 			.replace(/<!--(?!slot:)[\s\S]*?-->/g, "")
 			.replace(ORIGIN, "")
-			// The theme vendor's demo server (layerdrops.com) no longer exists; its images never load on the live site either.
+			// The theme vendor's demo server (layerdrops.com) no longer exists, so its images never load on the
+			// live site either. The decorative ones (textures, shapes) were restored from the Internet Archive
+			// into public/legacy/theme-images/; any other address is dropped.
+			.replace(DEMO_IMAGE, demoImage)
 			.replace(/ data-back="https?:\/\/layerdrops\.com[^"]*"/g, "")
 			.replace(/ data-src="https?:\/\/layerdrops\.com[^"]*"/g, "")
 			.replace(/url\((['"]?)https?:\/\/layerdrops\.com[^)]*\1\)/g, "none")
@@ -338,6 +345,7 @@ for (const file of Object.values(PAGES).concat(["post.html", "campaign.html", "e
 		const body = m[2]
 			.replace(/\/\*# sourceURL=[^*]*\*\//g, "")
 			.replace(ORIGIN, "")
+			.replace(DEMO_IMAGE, demoImage)
 			.replace(/url\((['"]?)https?:\/\/layerdrops\.com[^)]*\1\)/g, "none")
 			.trim();
 		if (body && !headStyles.includes(body)) headStyles.push(body);
