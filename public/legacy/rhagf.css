@@ -1,0 +1,112 @@
+/* Small additions to the Oxpins theme for this site (loaded after the theme's own styles). */
+
+/* Pictures chosen in the admin fill the frame the theme designed for them, whatever their shape. */
+img.rhagf-cover {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+/* A volunteer without a photo yet. */
+.rhagf-team-placeholder {
+	aspect-ratio: 270 / 310;
+	background: var(--oxpins-extra, #f1f4f3);
+}
+
+/* Donation forms: GiveWP's on-page form and its pop-up. */
+.give-display-onpage .rhagf-donate,
+.rhagf-donate-modal .rhagf-donate {
+	display: block;
+}
+.rhagf-donate.white-popup {
+	position: relative;
+	background: #fff;
+	padding: 30px;
+	max-width: 760px;
+	margin: 20px auto;
+	border-radius: 10px;
+}
+.rhagf-donate #give-donation-level-button-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin: 15px 0 20px;
+	padding: 0;
+	list-style: none;
+}
+.rhagf-donate #give-donation-level-button-wrap li {
+	margin: 0;
+}
+.rhagf-donate .give-donation-level-btn.give-default-level {
+	background-color: var(--oxpins-base, #3eb9a3);
+	color: #fff;
+}
+.rhagf-donate select.give-input {
+	width: 100%;
+	height: 50px;
+	padding: 0 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #fff;
+}
+.rhagf-donate #give_offline_payment_info p,
+.rhagf-donate #give_offline_payment_info ol {
+	margin-bottom: 10px;
+}
+.rhagf-donate .give-submit[disabled] {
+	opacity: 0.7;
+	cursor: wait;
+}
+.rhagf-donate-error p {
+	color: #b42318;
+	margin: 0 0 12px;
+}
+
+/* Pledge receipt on Donation Confirmation. */
+.rhagf-receipt table {
+	width: 100%;
+	margin: 20px 0;
+	border-collapse: collapse;
+}
+.rhagf-receipt th,
+.rhagf-receipt td {
+	padding: 10px 12px;
+	border: 1px solid #e5e5e5;
+	text-align: left;
+}
+.rhagf-receipt__instructions {
+	padding: 20px;
+	background: #f1f4f3;
+	border-radius: 8px;
+}
+
+/* Comment form status line. */
+.rhagf-comment-status {
+	margin-top: 12px;
+}
+.rhagf-comment-status.is-error {
+	color: #b42318;
+}
+
+/* Approved comments on campaign pages. */
+.comment-one__single {
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.comment-one__date {
+	display: block;
+	font-size: 14px;
+	opacity: 0.7;
+	margin-bottom: 10px;
+}
+
+/* Event pages: the event's picture and longer description. */
+.event-details__img img {
+	width: 100%;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+.event-details__content {
+	margin-top: 30px;
+}

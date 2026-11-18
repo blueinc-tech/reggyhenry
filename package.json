@@ -1,0 +1,54 @@
+{
+  "name": "rhagf-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --no-warnings=ExperimentalWarning --test \"tests/**/*.test.ts\"",
+    "db:local": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/db-local.ts",
+    "db:migrate": "node --experimental-strip-types --no-warnings=ExperimentalWarning --env-file-if-exists=.env.local scripts/migrate-schema.ts",
+    "import:wordpress": "node --experimental-strip-types --no-warnings=ExperimentalWarning --env-file-if-exists=.env.local scripts/import-wordpress.ts",
+    "admin:create": "node --experimental-strip-types --no-warnings=ExperimentalWarning --env-file-if-exists=.env.local scripts/create-admin.ts",
+    "theme:build": "node --experimental-strip-types --no-warnings=ExperimentalWarning scripts/build-theme.ts",
+    "import:extras": "node --experimental-strip-types --no-warnings=ExperimentalWarning --env-file-if-exists=.env.local scripts/import-extras.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.1158.0",
+    "@aws-sdk/client-sesv2": "3.1158.0",
+    "@tiptap/extension-image": "3.32.0",
+    "@tiptap/extension-table": "3.32.0",
+    "@tiptap/pm": "3.32.0",
+    "@tiptap/react": "3.32.0",
+    "@tiptap/starter-kit": "3.32.0",
+    "motion": "14.7.1",
+    "next": "16.4.6",
+    "nodemailer": "10.1.7",
+    "postgres": "3.4.9",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sanitize-html": "2.18.1",
+    "server-only": "0.0.1",
+    "yoastseo": "3.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/nodemailer": "8.0.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/sanitize-html": "2.16.2",
+    "embedded-postgres": "18.4.0-beta.17",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20.9"
+  },
+  "overrides": {
+    "@babel/runtime": "7.28.4"
+  }
+}
